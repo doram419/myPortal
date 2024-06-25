@@ -30,9 +30,11 @@ public class UserDaoImpl implements UserDao{
 		}
 	}
 
+	// 중복 확인
 	@Override
 	public UserVo selectUser(String email) {
-		return null;
+		UserVo vo = sqlSession.selectOne("users.selectUserByEmail",email);
+		return vo;
 	}
 	
 	// 로그인
