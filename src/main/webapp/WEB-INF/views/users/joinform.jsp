@@ -9,6 +9,7 @@
 	<title>회원 가입폼</title>
 	<link type="text/css" rel="stylesheet"
 		href="<c:url value="/css/guestbook.css"/>"/>
+	<script src="<c:url value="/javascript/user.js"/>"></script>
 </head>
 <body>
 	<!-- header import -->
@@ -34,11 +35,20 @@
 			<input name="password" type="password" placeholder="비밀번호를 입력하십시오"><br>
 		
 			<label for="email">이메일</label>
-			<input type="text" name="email" placeholder="이메일을 입력하십시오."><br>
+			<input type="text" name="email" placeholder="이메일을 입력하십시오.">
+			<input type="button" id="check-email"
+				data-target="<c:url value="/users/checkEmail" />"
+				value="이메일 중복체크" /> 
+			<input type="hidden" name="emailCheck" value="n"/>	
+			
+			<br>
 		
 			<label for="gender">성별</label>
-			<input type="radio" name="gender" value="M" checked>남성</radio>
+			<input type="radio" name="gender" value="M">남성</radio>
 			<input type="radio" name="gender" value="F">여성</radio><br>
+			
+			<label for="agree">약관동의</label>
+			<input type="checkbox" id="agree" name="agree" value="n"/>
 			<input type="submit" value="전송"> 
 		</form>
 	</div>
