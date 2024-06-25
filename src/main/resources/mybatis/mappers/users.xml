@@ -7,10 +7,9 @@
 		<selectKey keyProperty="no" resultType="long" order="BEFORE">
 		SELECT seq_users_pk.nextval FROM dual
 		</selectKey>
-	INSERT INTO users (no, name, password, email, gender)
+	INSERT INTO users(no, name, password, email, gender)
 	VALUES(#{no}, #{name}, #{password}, #{email}, #{gender})
 	</insert>
-	
 	
 	<!-- Email 정보로 사용자 정보 Select : 중복 가입 확인-->
 	<select id="selectUserByEmail"
