@@ -14,20 +14,32 @@
 </head>
 
 <body>
-	<form id="login-form" 
-		name="loginform" 
-		method="POST" 
-		action="<c:url value="/users/login"/>">
-		
-		<label class="block-label" for="email">이메일</label> 
-		<input id="email" name="email" type="text" value=""> 
+	<!-- header import -->
+	<c:import url="/WEB-INF/views/includes/header.jsp">
+	</c:import>
+	
+	<!-- navigation import -->
+	<c:import url="/WEB-INF/views/includes/navigation.jsp">
+	</c:import>
 
-		<label class="block-label">패스워드</label> 
-		<input name="password" type="password" value="">
-
-		<input type="submit" value="로그인">
-	</form>
+	<div id="container">
+		<form id="login-form" 
+			name="loginform" 
+			method="POST" 
+			action="<c:url value="/users/login"/>">
+			
+			<label class="block-label" for="email">이메일</label> 
+			<input id="email" name="email" type="text" value=""> 
+	
+			<label class="block-label">패스워드</label> 
+			<input name="password" type="password" value="">
+	
+			<input type="submit" value="로그인">
+		</form>
+    </div>
     
+    <!-- footer import -->
+    <c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
 </body>
 
 </html>

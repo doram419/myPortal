@@ -7,12 +7,14 @@
 <head>
 	<meta charset="UTF-8">
 	<title>회원 가입폼</title>
-	<!-- need css import -->
+	<link type="text/css" rel="stylesheet"
+		href="<c:url value="/css/guestbook.css"/>"/>
 </head>
 <body>
 	<!-- header import -->
 	<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
 	<!-- navigator import -->
+	<c:import url="/WEB-INF/views/includes/navigation.jsp"></c:import>
 	
 	<div id="container">
 	<h1>회원 가입</h1>
@@ -40,5 +42,8 @@
 			<input type="submit" value="전송"> 
 		</form>
 	</div>
+	
+	<c:import url="/WEB-INF/views/includes/footer.jsp">
+	</c:import>
 </body>
 </html>
