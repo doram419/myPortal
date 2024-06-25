@@ -14,8 +14,6 @@
 
 		<!-- header include -->
 		<c:import url="/WEB-INF/views/includes/header.jsp">
-			<c:param name="param1" value="value1" />
-			<c:param name="param2" value="value2" />
 		</c:import>
 
 		<!-- navigation include -->
