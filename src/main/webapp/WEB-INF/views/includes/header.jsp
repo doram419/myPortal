@@ -19,7 +19,7 @@
       <!-- 로그인 안한 사용자 -->
       <!-- 가입링크, 로그인 폼 링크 -->
       	<li><a href='<c:url value="/users?a=loginform" />'>로그인</a></li>
-      	<li><a href='<c:url value="/users?a=joinform" />'>회원가입</a></li>
+      	<li><a href='<c:url value="/users/join" />'>회원가입</a></li>
       </ul>
       </c:otherwise>
       </c:choose>

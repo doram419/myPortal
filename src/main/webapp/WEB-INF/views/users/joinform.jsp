@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +14,7 @@
 	<form
 		id="join-form"
 		name="registerForm" 
-		action=""
+		action="<c:url value="/users/join"/>"
 		method="POST"
 		>
 		<input type="hidden" name="a" value="join">
