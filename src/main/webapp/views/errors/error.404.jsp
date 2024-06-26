@@ -18,10 +18,10 @@
 		<div id="content">
 			<div id="site-introduction">
 	
-			<h1>워메~</h1>
-			<h2>여기가 어디여</h2>
+			<h1>ERROR CODE : 404</h1>
+			<h2>워메~ 여기가 어디여</h2>
 			
-			<p>페이지를 못 찾겠습니다.</p>
+			<p>페이지를 못 찾겠습니다</p>
 
 			</div>
 		</div>
