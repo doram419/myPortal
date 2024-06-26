@@ -2,6 +2,7 @@ package himedia.myportal.controllers;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -79,6 +80,52 @@ public class BoardController {
 			boardVo.setUserNo(authUser.getNo());
 			boardService.write(boardVo);
 			
+			return "redirect:/board/list";
+		} else {
+			return "redirect:/users/login";
+		}
+	}
+	
+	// 편집 폼
+	@GetMapping("/{no}/modify")
+	public String modifyForm(@PathVariable("no") Long no, Model model, 
+			HttpSession httpSession) {
+		UserVo authUser = null;
+
+		if(httpSession.getAttribute("authUser") instanceof UserVo) {
+			authUser = (UserVo)httpSession.getAttribute("authUser");
+			BoardVo vo = boardService.getContent(no);
+			model.addAttribute("vo", vo);
+			
+			return "/board/modify";
+		} else {
+			return "redirect:/users/login";
+		}
+	}
+	
+	// 편집 액션
+	@PostMapping("/modify")
+	public String modifyAction(@ModelAttribute BoardVo updatedVo) {
+		// 기존 게시물 받아오기
+		BoardVo vo = boardService.getContent(updatedVo.getNo());
+		vo.setTitle(updatedVo.getTitle());
+		vo.setContent(updatedVo.getContent());
+
+		boolean success = boardService.update(vo);
+		return "redirect:/board/list";
+	}
+	
+	// 삭제 액션
+	@RequestMapping("/{no}/delete")
+	public String delete(
+			@PathVariable("no") Long no,
+			HttpSession httpSession) {
+		UserVo authUser = null;
+
+		if(httpSession.getAttribute("authUser") instanceof UserVo) {
+			authUser = (UserVo)httpSession.getAttribute("authUser");
+			
+			boardService.delete(no, authUser.getNo());
 			return "redirect:/board/list";
 		} else {
 			return "redirect:/users/login";

@@ -31,8 +31,12 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public boolean update(BoardVo boardVo) {
-		// TODO Auto-generated method stub
-		return false;
+		return 1 == boardDao.update(boardVo);
+	}
+
+	@Override
+	public boolean delete(Long no, Long userNo) {
+		return 1 == boardDao.delete(no, userNo);
 	}
 
 }

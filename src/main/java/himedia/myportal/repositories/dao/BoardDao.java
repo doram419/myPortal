@@ -10,4 +10,5 @@ public interface BoardDao {
 	public BoardVo getContent(Long no);
 	public int update(BoardVo boardVo);
 	public int increaseHitCount(Long no); 
+	public int delete(Long no, Long userNo);
 }

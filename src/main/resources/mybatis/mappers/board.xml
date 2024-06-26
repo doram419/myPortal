@@ -57,4 +57,9 @@
 		WHERE no=#{no}
 	</update>
 	
+	<!-- 게시물 삭제 -->
+	<delete id="deleteByUserNo" parameterType="map">
+		DELETE FROM board
+		WHERE no=#{no} AND user_no = #{userNo}
+	</delete>
 </mapper>

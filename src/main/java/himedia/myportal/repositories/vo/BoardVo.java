@@ -49,7 +49,7 @@ public class BoardVo {
 	}
 	
 	public String getContent() {
-		return content;
+		return content.replaceAll("\n", "<br>");
 	}
 	public void setContent(String content) {
 		this.content = content;

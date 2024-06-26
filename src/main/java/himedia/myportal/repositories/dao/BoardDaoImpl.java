@@ -1,6 +1,8 @@
 package himedia.myportal.repositories.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,12 +43,35 @@ public class BoardDaoImpl implements BoardDao{
 
 	@Override
 	public int update(BoardVo boardVo) {
-		// TODO Auto-generated method stub
-		return 0;
+		try {
+			int updatedCount = sqlSession.update("board.update", boardVo);
+			
+			return updatedCount;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new BoardDaoException("게시물 수정 중 예외 발생!!", boardVo);
+		}
 	}
 
 	@Override
 	public int increaseHitCount(Long no) {
 		return sqlSession.update("board.increaseHitCount", no);
+	}
+
+	@Override
+	public int delete(Long no, Long userNo) {
+		try {
+			Map<String, Long> map = new HashMap<>();
+			map.put("no", no);
+			map.put("userNo", userNo);
+			
+			return sqlSession.delete("board.deleteByUserNo", map);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new BoardDaoException("게시물 삭제 중 예외 발생!!");
+		}
+
+		
+
 	}
 }

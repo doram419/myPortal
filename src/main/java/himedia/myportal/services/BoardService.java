@@ -9,4 +9,5 @@ public interface BoardService {
 	public BoardVo getContent(Long no);
 	public boolean write(BoardVo boardVo);
 	public boolean update(BoardVo boardVo);
+	public boolean delete(Long no, Long userNo);
 }
