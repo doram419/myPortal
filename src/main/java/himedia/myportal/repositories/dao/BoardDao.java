@@ -9,4 +9,5 @@ public interface BoardDao {
 	public int insert(BoardVo boardVo);
 	public BoardVo getContent(Long no);
 	public int update(BoardVo boardVo);
+	public int increaseHitCount(Long no); 
 }

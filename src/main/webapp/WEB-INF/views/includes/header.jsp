@@ -8,7 +8,7 @@
 		<c:when test="${not empty authUser }">
 			<ul>
 				<li><a href='<c:url value="/users/logout" />'>로그아웃</a></li>
-				<li>${authUser.name }님환영합니다</li>
+				<li>${authUser.name } 님환영합니다</li>
 				<!-- 로그인 한 사용자 -->
 				<!-- 웰컴 메시지, 로그아웃 링크 -->
 			</ul>

@@ -36,11 +36,18 @@
 			<td>${vo.userName}</td>
 			<td>${vo.hit}</td>
 			<td>${vo.regDate}</td>
-			<td><button>삭제</button></td>
+			<td>
+				<c:if test="${not empty authUser }">
+					<c:if test="${authUser.no == vo.userNo }">
+						<a href="<c:url value="/board/${vo.no}/modify"/>">수정</a>
+						<a href="<c:url value="/board/${vo.no}/delete"/>">삭제</a>
+					</c:if>		
+				</c:if>
+			</td>
 		</tr>
 	</c:forEach>
 		<tr>
-			<td colspan="6"><a href="">글쓰기</a></td>
+			<td colspan="6"><a href="<c:url value="/board/write"/>">글쓰기</a></td>
 		</tr>
 	</table>
 	<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>

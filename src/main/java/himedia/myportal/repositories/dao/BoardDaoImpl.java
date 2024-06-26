@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import himedia.myportal.exceptions.BoardDaoException;
 import himedia.myportal.repositories.vo.BoardVo;
 
 @Repository("boardDao")
@@ -22,14 +23,19 @@ public class BoardDaoImpl implements BoardDao{
 
 	@Override
 	public int insert(BoardVo boardVo) {
-		// TODO Auto-generated method stub
-		return 0;
+		try {
+			int insertCount = sqlSession.insert("board.insert", boardVo);
+			return insertCount;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new BoardDaoException("게시물 입력 중 예외 발생!!", boardVo);
+		}
 	}
 
 	@Override
 	public BoardVo getContent(Long no) {
 		BoardVo boardVo = sqlSession.selectOne("board.getContent", no);
-		
+
 		return boardVo;
 	}
 
@@ -39,4 +45,8 @@ public class BoardDaoImpl implements BoardDao{
 		return 0;
 	}
 
+	@Override
+	public int increaseHitCount(Long no) {
+		return sqlSession.update("board.increaseHitCount", no);
+	}
 }
