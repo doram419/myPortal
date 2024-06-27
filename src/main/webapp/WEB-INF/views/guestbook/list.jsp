@@ -10,18 +10,16 @@
 	href='<c:url value="/css/guestbook.css" />' />
 </head>
 <body>
+	<!-- header include -->
+	<c:import url="/WEB-INF/views/includes/header.jsp">
+	</c:import>
+
+	<!-- navigation include -->
+	<c:import url="/WEB-INF/views/includes/navigation.jsp" />
+	
 	<div id="container">
-
-		<!-- header include -->
-		<c:import url="/WEB-INF/views/includes/header.jsp">
-		</c:import>
-
-		<!-- navigation include -->
-		<c:import url="/WEB-INF/views/includes/navigation.jsp" />
-
-		<div id="wrapper">
-			<div id="content">
-
+		<div id="content">
+			<div id="wrapper">
 				<h1>방명록</h1>
 				<form action="<c:url value="/guestbook/write" />" method="POST">
 					<table border=1 width=500>

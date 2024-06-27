@@ -1,8 +1,12 @@
 package himedia.myportal.exceptions;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 import himedia.myportal.repositories.vo.BoardVo;
 
 public class BoardDaoException extends RuntimeException{
+	private static final Logger logger = (Logger)LoggerFactory.getLogger(BoardDaoException.class); 
 	private BoardVo boardVo = null;
 	
 	public BoardDaoException() {
@@ -10,6 +14,7 @@ public class BoardDaoException extends RuntimeException{
 	
 	public BoardDaoException(String message) {
 		super(message);
+		logger.error(message);
 	}
 
 	public BoardDaoException(String message, BoardVo vo) {

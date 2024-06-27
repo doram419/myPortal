@@ -7,34 +7,44 @@
 	<head>
 		<title>My Homepage</title>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<link href="/myportal/css/board.css" type="text/css" rel="stylesheet">
 	</head>
 <body>
-	<form method="post" action="<c:url value="/board/write"/>">
-		<table border="1" width="640">
-			<tr>
-				<td colspan="2"><h3>게시판</h3></td>
-			</tr>
-			<tr>
-				<th colspan="2">글쓰기</th>
-			</tr>
-			<tr>
-				<td>제목</td>
-				<td> <input type="text" name="title" value=""> </td>
-			</tr>
-			<tr>
-				<td>내용</td>
-				<td>
-					<textarea id="content" name="content"> </textarea>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					<a href="<c:url value="/board/"/>">취소</a>
-					<input type="submit" value="등록">
-				</td>	
-			</tr>
-		</table>
-	</form>
+	<c:import url="/WEB-INF/views/includes/header.jsp"></c:import>
+	<c:import url="/WEB-INF/views/includes/navigation.jsp"></c:import>
+	
+	<div id="container">
+		<div id="content">
+			<form method="post" action="<c:url value="/board/write"/>">
+			<table border="1" width="640">
+				<tr>
+					<td colspan="2"><h3>게시판</h3></td>
+				</tr>
+				<tr>
+					<th colspan="2">글쓰기</th>
+				</tr>
+				<tr>
+					<td>제목</td>
+					<td> <input type="text" name="title" value=""> </td>
+				</tr>
+				<tr>
+					<td>내용</td>
+					<td>
+						<textarea id="content" name="content"> </textarea>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<a href="<c:url value="/board/"/>">취소</a>
+						<input type="submit" value="등록">
+					</td>	
+				</tr>
+			</table>
+			</form>
+		</div>
+		<c:import url="/WEB-INF/views/includes/footer.jsp"></c:import>
+	</div>
+	
 			
 </body>
 </html>

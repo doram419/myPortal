@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<!-- Appender: 어디에, 어떤 로그를 찍을 것인가 -->
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<charset>UTF-8</charset>
+			<Pattern>
+				%d{HH:mm:ss.SSS} %thread %-5level %logger{5} - %msg%n
+			</Pattern>
+			<!-- 인코더 종류: PatternEncoder, HTMLLayoutEncoder, JsonLayoutEncoder 등 -->
+		</encoder>
+	</appender>
+	
+	<!-- Appender 등록 -->
+	<logger name="himedia.myportal" level="DEBUG">
+		<appender-ref ref="consoleAppender"/>
+	</logger>
+</configuration>
