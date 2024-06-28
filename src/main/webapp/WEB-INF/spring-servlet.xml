@@ -49,7 +49,11 @@
     <mvc:interceptors>
     	<mvc:interceptor>
     		<mvc:mapping path="/board/**"></mvc:mapping>
-    		<bean class="himedia.myportal.interceptors.MyInterceptor"></bean>
+    		<mvc:exclude-mapping path="/board"/>
+    		<mvc:exclude-mapping path="/board/"/>
+    		<mvc:exclude-mapping path="/board/list/**"/>		
+    		<bean class="himedia.myportal.interceptors.AuthInterceptor"></bean>
+
     	</mvc:interceptor>
     </mvc:interceptors>
 </beans>

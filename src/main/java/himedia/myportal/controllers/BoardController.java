@@ -42,35 +42,41 @@ public class BoardController {
 			Model model,
 			HttpSession httpSession,
 			RedirectAttributes redirectAttribute) {
-		UserVo authUser = null;
+//		UserVo authUser = null;
+//		
+//		if(httpSession.getAttribute("authUser") instanceof UserVo) {
+//			authUser = (UserVo)httpSession.getAttribute("authUser");
+//			
+//			BoardVo boardVo = boardService.getContent(no);
+//			model.addAttribute("vo", boardVo);
+//			
+//			return "/board/view";
+//		} else {
+//			redirectAttribute.addFlashAttribute("errorMsg", "로그인 되지 않았습니다.");
+//			return "redirect:/users/login";
+//		}	
+		BoardVo boardVo = boardService.getContent(no);
+		model.addAttribute("vo", boardVo);
 		
-		if(httpSession.getAttribute("authUser") instanceof UserVo) {
-			authUser = (UserVo)httpSession.getAttribute("authUser");
-			
-			BoardVo boardVo = boardService.getContent(no);
-			model.addAttribute("vo", boardVo);
-			
-			return "/board/view";
-		} else {
-			redirectAttribute.addFlashAttribute("errorMsg", "로그인 되지 않았습니다.");
-			return "redirect:/users/login";
-		}
+		return "/board/view";
 	}
 	
 	// 작성 폼
 	@GetMapping("/write")
 	public String write(HttpSession httpSession,
 			RedirectAttributes redirectAttribute) {
-		UserVo authUser = null;
+//		UserVo authUser = null;
+//		
+//		if(httpSession.getAttribute("authUser") instanceof UserVo) {
+//			authUser = (UserVo)httpSession.getAttribute("authUser");
+//			
+//			return "/board/write";
+//		} else {
+//			redirectAttribute.addFlashAttribute("errorMsg", "로그인 되지 않았습니다.");
+//			return "redirect:/users/login";
+//		}
 		
-		if(httpSession.getAttribute("authUser") instanceof UserVo) {
-			authUser = (UserVo)httpSession.getAttribute("authUser");
-			
-			return "/board/write";
-		} else {
-			redirectAttribute.addFlashAttribute("errorMsg", "로그인 되지 않았습니다.");
-			return "redirect:/users/login";
-		}
+		return "/board/write";
 	}
 	
 	// 작성 액션
@@ -79,18 +85,24 @@ public class BoardController {
 			@ModelAttribute BoardVo boardVo,
 			HttpSession httpSession,
 			RedirectAttributes redirectAttribute) {
-		UserVo authUser = null;
+//		UserVo authUser = null;
+//		
+//		if(httpSession.getAttribute("authUser") instanceof UserVo) {
+//			authUser = (UserVo)httpSession.getAttribute("authUser");
+//			boardVo.setUserNo(authUser.getNo());
+//			boardService.write(boardVo);
+//			
+//			return "redirect:/board/list";
+//		} else {
+//			redirectAttribute.addFlashAttribute("errorMsg", "로그인 되지 않았습니다.");
+//			return "redirect:/users/login";
+//		}
 		
-		if(httpSession.getAttribute("authUser") instanceof UserVo) {
-			authUser = (UserVo)httpSession.getAttribute("authUser");
-			boardVo.setUserNo(authUser.getNo());
-			boardService.write(boardVo);
-			
-			return "redirect:/board/list";
-		} else {
-			redirectAttribute.addFlashAttribute("errorMsg", "로그인 되지 않았습니다.");
-			return "redirect:/users/login";
-		}
+		UserVo authUser = (UserVo)httpSession.getAttribute("authUser");
+		boardVo.setUserNo(authUser.getNo());
+		boardService.write(boardVo);
+		
+		return "redirect:/board/list";
 	}
 	
 	// 편집 폼
@@ -98,18 +110,24 @@ public class BoardController {
 	public String modifyForm(@PathVariable("no") Long no, Model model, 
 			HttpSession httpSession,
 			RedirectAttributes redirectAttribute) {
-		UserVo authUser = null;
-
-		if(httpSession.getAttribute("authUser") instanceof UserVo) {
-			authUser = (UserVo)httpSession.getAttribute("authUser");
-			BoardVo vo = boardService.getContent(no);
-			model.addAttribute("vo", vo);
-			
-			return "/board/modify";
-		} else {
-			redirectAttribute.addFlashAttribute("errorMsg", "로그인 되지 않았습니다.");
-			return "redirect:/users/login";
-		}
+//		UserVo authUser = null;
+//
+//		if(httpSession.getAttribute("authUser") instanceof UserVo) {
+//			authUser = (UserVo)httpSession.getAttribute("authUser");
+//			BoardVo vo = boardService.getContent(no);
+//			model.addAttribute("vo", vo);
+//			
+//			return "/board/modify";
+//		} else {
+//			redirectAttribute.addFlashAttribute("errorMsg", "로그인 되지 않았습니다.");
+//			return "redirect:/users/login";
+//		}
+		
+		UserVo authUser = (UserVo)httpSession.getAttribute("authUser");
+		BoardVo vo = boardService.getContent(no);
+		model.addAttribute("vo", vo);
+		
+		return "/board/modify";
 	}
 	
 	// 편집 액션
@@ -130,16 +148,21 @@ public class BoardController {
 			@PathVariable("no") Long no,
 			HttpSession httpSession,
 			RedirectAttributes redirectAttribute) {
-		UserVo authUser = null;
-
-		if(httpSession.getAttribute("authUser") instanceof UserVo) {
-			authUser = (UserVo)httpSession.getAttribute("authUser");
-			
-			boardService.delete(no, authUser.getNo());
-			return "redirect:/board/list";
-		} else {
-			redirectAttribute.addFlashAttribute("errorMsg", "로그인 되지 않았습니다.");
-			return "redirect:/users/login";
-		}
+//		UserVo authUser = null;
+//
+//		if(httpSession.getAttribute("authUser") instanceof UserVo) {
+//			authUser = (UserVo)httpSession.getAttribute("authUser");
+//			
+//			boardService.delete(no, authUser.getNo());
+//			return "redirect:/board/list";
+//		} else {
+//			redirectAttribute.addFlashAttribute("errorMsg", "로그인 되지 않았습니다.");
+//			return "redirect:/users/login";
+//		}
+		
+		UserVo authUser = (UserVo)httpSession.getAttribute("authUser");
+		
+		boardService.delete(no, authUser.getNo());
+		return "redirect:/board/list";
 	}
 }
