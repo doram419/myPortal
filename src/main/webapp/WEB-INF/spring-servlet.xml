@@ -47,9 +47,9 @@
     
     <!-- Interceptors -->
     <mvc:interceptors>
-    	<interceptor>
+    	<mvc:interceptor>
     		<mvc:mapping path="/board/**"></mvc:mapping>
     		<bean class="himedia.myportal.interceptors.MyInterceptor"></bean>
-    	</interceptor>
+    	</mvc:interceptor>
     </mvc:interceptors>
 </beans>

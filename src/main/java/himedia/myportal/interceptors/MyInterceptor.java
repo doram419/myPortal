@@ -56,5 +56,4 @@ public class MyInterceptor implements HandlerInterceptor{
 
 		HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
 	}
-	
 }
