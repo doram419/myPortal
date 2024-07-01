@@ -1,1 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="attach">
+	<!-- 첨부 파일 DB에 첨부 파일 한 개 넣기 
+		dao에서 for문 돌리기
+		attach 만들고 attachBridge를 가져와서 만들어줘야해 -->
+	<insert id="insert" parameterType="AttachVo">
+		<selectKey keyProperty="seqNo" resultType="long">
+			SELECT seq_attach_no FROM DUAL
+		</selectKey>
+		INSERT INTO attachment(no, postNo, fileName)	
+		VALUES(#{seqNo}, #{postNo}, #{fileName})
+	</insert>
+	
+	<!-- attachBridge 생성을 위한 pk 가져오기 -->
+	<select id="selectPk" parameterType="Long"  resultType="Long">
+		SELECT no FROM attachment
+	</select>
+	
+	<!-- 첨부 파일 DB에서 첨부 파일들 불러와서 리스트로 전달하기 
+		attachBridge로 불러오지 않으려나? 일단 만들자-->
+	<select id="selectAll" resultType="AttachVo">
+		SELECT no, postNo, fileName FROM attachment
+	</select>
+	
+	<!-- 첨부 파일 삭제하기 -->
+	<delete id="deleteByNo" parameterType="Long">
+		DELETE FROM attachment WHERE postNo = #{value}
+	</delete>
+	
+	<!-- 첨부파일 편집하기
+		연결고리를 삭제하고 새로 넣는 걸로 하자 dao에서 해야하는 일이야 -->
+</mapper>
