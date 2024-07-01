@@ -19,6 +19,8 @@
 		<mapper resource="/mybatis/mappers/guestbook.xml" />
 		<mapper resource="/mybatis/mappers/users.xml" />
 		<mapper resource="/mybatis/mappers/board.xml"/>
+		<mapper resource="/mybatis/mappers/attach.xml"/>
+		<mapper resource="/mybatis/mappers/attachBridge.xml"/>
 	</mappers>
 
 </configuration>
