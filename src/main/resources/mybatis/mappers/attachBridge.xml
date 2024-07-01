@@ -3,5 +3,15 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="attachBridge">
-
+	<!-- attachBridge 객체 생성 -->
+	<insert id="insertWithPostNoAndAttachNo" parameterType="Map">
+		INSERT INTO boardBridge(postNo, attachNo)
+		VALUES(#{postNo}, #{attachNo})
+	</insert>
+	
+	<!-- attachBridge 삭제
+		글 삭제, 혹은 첨부 파일 변경시 삭제 -->
+	<delete id="delete" parameterType="Long">
+		DELETE FROM boardBridge WHERE postNo = #{value}
+	</delete>
 </mapper>
