@@ -13,9 +13,16 @@
 		VALUES(#{seqNo}, #{postNo}, #{fileName})
 	</insert>
 	
-	<!-- 첨부 파일 DB에서 첨부 파일들 불러와서 리스트로 전달하기 -->
+	<!-- 첨부 파일 DB에서 첨부 파일들 불러와서 리스트로 전달하기 
+		attachBridge로 불러오지 않으려나? 일단 만들자-->
+	<select id="selectAll" resultType="AttachVo">
+		SELECT * FROM attachment;
+	</select>
 	
 	<!-- 첨부 파일 삭제하기 -->
+	<delete id="deleteByNo" parameterType="Long">
+		DELETE FROM attachment WHERE post_no = #{value}
+	</delete>
 	
 	<!-- 첨부파일 편집하기
 		연결고리를 삭제하고 새로 넣는 걸로 하자 dao에서 해야하는 일이야 -->
