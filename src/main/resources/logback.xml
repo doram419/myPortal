@@ -60,12 +60,12 @@
 	</appender>
 	
 	<!-- Appender 등록 -->
-	<logger name="himedia.myportal" level="DEBUG">
+	<logger name="himedia.myportal" level="INFO">
 		<appender-ref ref="consoleAppender"/>
 	</logger>
 	
 	<!-- root Appender -->
-	<root level="trace">
+	<root level="INFO">
 		<appender-ref ref="fileAppender"/>
 	</root>
 </configuration>

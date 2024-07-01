@@ -35,6 +35,9 @@
     </mvc:annotation-driven>
     <mvc:default-servlet-handler />
     
+    <!-- Resource Mapping -->
+    <mvc:resources mapping="/upload-images/**" location="file:c:/uploads/"></mvc:resources>
+    
     <!-- View Resolver -->
     <bean id="viewResolver"
     	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -53,7 +56,12 @@
     		<mvc:exclude-mapping path="/board/"/>
     		<mvc:exclude-mapping path="/board/list/**"/>		
     		<bean class="himedia.myportal.interceptors.AuthInterceptor"></bean>
-
     	</mvc:interceptor>
     </mvc:interceptors>
+    
+    <!-- MultipartResolver -->
+    <bean id="multipartResolver"
+    	class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
+    </bean>
+    
 </beans>

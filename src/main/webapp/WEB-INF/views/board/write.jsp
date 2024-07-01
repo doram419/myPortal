@@ -18,10 +18,10 @@
 			<form method="post" action="<c:url value="/board/write"/>">
 			<table border="1" width="640">
 				<tr>
-					<td colspan="2"><h3>게시판</h3></td>
+					<td><h3>게시판</h3></td>
 				</tr>
 				<tr>
-					<th colspan="2">글쓰기</th>
+					<th>글쓰기</th>
 				</tr>
 				<tr>
 					<td>제목</td>
@@ -29,12 +29,12 @@
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td>
+					<td colspan="2">
 						<textarea id="content" name="content"> </textarea>
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2">
+					<td>
 						<a href="<c:url value="/board/"/>">취소</a>
 						<input type="submit" value="등록">
 					</td>	
