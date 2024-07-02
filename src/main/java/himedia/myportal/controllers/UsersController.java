@@ -29,7 +29,8 @@ public class UsersController {
 	
 	// 가입 폼
 	@GetMapping({"/", "/join"})
-	public String join() {
+	public String join(@ModelAttribute UserVo userVo) {
+		userVo.setGender("F");
 		return "users/joinform";
 	}
 	
@@ -38,7 +39,6 @@ public class UsersController {
 	public String join(@ModelAttribute @Valid UserVo userVo,
 			BindingResult result,
 			Model model) {
-		System.out.println("회원 가입 폼 : " + userVo);
 		
 		// 검증 결과 확인
 		if(result.hasErrors()) {
@@ -47,7 +47,7 @@ public class UsersController {
 				System.err.println("Error: " + e);
 			}
 			model.addAllAttributes(result.getModel());
-			return "redirect:/users/join";
+			return "users/joinform";
 		}
 		
 		boolean success = userService.join(userVo);

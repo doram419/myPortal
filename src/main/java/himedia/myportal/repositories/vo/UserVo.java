@@ -8,7 +8,6 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
-
 public class UserVo {
 	private Long no;
 	@NotEmpty
@@ -26,7 +25,6 @@ public class UserVo {
 	
 	//	생성자
 	public UserVo() {
-		
 	}
 	
 	public UserVo(String name, String email, String password, String gender) {
