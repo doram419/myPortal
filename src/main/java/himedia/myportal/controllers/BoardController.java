@@ -16,6 +16,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import himedia.myportal.repositories.vo.BoardVo;
 import himedia.myportal.repositories.vo.UserVo;
+import himedia.myportal.services.AttachBridgeService;
 import himedia.myportal.services.BoardService;
 import himedia.myportal.services.FileUploadService;
 import jakarta.servlet.http.HttpSession;
@@ -30,6 +31,8 @@ public class BoardController {
 	private BoardService boardService;
 	@Autowired
 	private FileUploadService fileUploadService;
+	@Autowired
+	private AttachBridgeService attachBridgeService;  
 	
 	// 게시판 목록 가져오기
 	@GetMapping({"", "/", "/list"})
@@ -107,11 +110,11 @@ public class BoardController {
 		boardVo.setUserNo(authUser.getNo());
 		
 		boardService.write(boardVo);
-		System.out.println(boardVo);
 	
-		fileUploadService.store(boardVo.getNo(), file);
-		System.out.println(boardVo.getNo() + ":" + file.getName());
+		Long attachNo = fileUploadService.storeAndReturnAttachNo(boardVo.getNo(), file);
 		
+		attachBridgeService.insert(boardVo.getNo(), attachNo);
+
 		return "redirect:/board/list";
 	}
 	

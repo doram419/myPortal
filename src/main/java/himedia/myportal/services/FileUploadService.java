@@ -36,14 +36,13 @@ public class FileUploadService {
 	}
 	
 	// Attachment 저장을 위해서 만든 오버라이드 함수
-	public String store(Long postNo, MultipartFile multipartFile) {
+	public Long storeAndReturnAttachNo(Long postNo, MultipartFile multipartFile) {
 		// 파일 명 확인
 		String originalFilename = multipartFile.getOriginalFilename();
 		// 확장자 분리
 		String extName = originalFilename.substring(originalFilename.lastIndexOf("."));
 		String saveFileName = getSaveFilename(extName);
 		
-		System.out.println("New Filename : " + saveFileName);
 		try {
 			writeFile(multipartFile, getSaveFilename(".jpg"));
 		} catch (Exception e) {
@@ -53,7 +52,7 @@ public class FileUploadService {
 		AttachVo attachVo = new AttachVo(postNo, saveFileName);
 		attachDao.insertAttach(attachVo);
 		
-		return saveFileName;
+		return attachVo.getNo();
 	}
 	
 	

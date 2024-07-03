@@ -26,7 +26,9 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public boolean write(BoardVo boardVo) {
-		return 1 == boardDao.insert(boardVo);
+		int writeResult = boardDao.insert(boardVo);
+		
+		return 1 == writeResult;
 	}
 
 	@Override

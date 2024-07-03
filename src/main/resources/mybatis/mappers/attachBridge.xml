@@ -4,7 +4,7 @@
 	
 <mapper namespace="attachBridge">
 	<!-- attachBridge 객체 생성 -->
-	<insert id="insertWithPostNoAndAttachNo" parameterType="Map">
+	<insert id="insert" parameterType="Map">
 		INSERT INTO boardBridge(postNo, attachNo)
 		VALUES(#{postNo}, #{attachNo})
 	</insert>

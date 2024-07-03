@@ -6,8 +6,8 @@
 	<!-- 첨부 파일 DB에 첨부 파일 한 개 넣기 
 		dao에서 for문 돌리기
 		attach 만들고 attachBridge를 가져와서 만들어줘야해 -->
-	<insert id="insert" parameterType="AttachVo" keyProperty="no">
-		<selectKey keyProperty="no" resultType="Long">
+	<insert id="insert" parameterType="AttachVo">
+		<selectKey keyProperty="no" resultType="Long" order="BEFORE">
 			SELECT seq_attach_no.nextVal FROM DUAL
 		</selectKey>
 		INSERT INTO attachment(no, postNo, fileName)	

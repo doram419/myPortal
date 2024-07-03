@@ -16,9 +16,7 @@ public class AttachDaoImpl implements AttachDao{
 	
 	@Override
 	public int insertAttach(AttachVo vo) {	
-		System.out.println(vo);
 		int result = sqlSession.insert("attach.insert", vo);
-		
 		return result;
 	}
 
