@@ -6,18 +6,13 @@
 	<!-- 첨부 파일 DB에 첨부 파일 한 개 넣기 
 		dao에서 for문 돌리기
 		attach 만들고 attachBridge를 가져와서 만들어줘야해 -->
-	<insert id="insert" parameterType="AttachVo">
-		<selectKey keyProperty="seqNo" resultType="long">
-			SELECT seq_attach_no FROM DUAL
+	<insert id="insert" parameterType="AttachVo" keyProperty="no">
+		<selectKey keyProperty="no" resultType="Long">
+			SELECT seq_attach_no.nextVal FROM DUAL
 		</selectKey>
 		INSERT INTO attachment(no, postNo, fileName)	
-		VALUES(#{seqNo}, #{postNo}, #{fileName})
+		VALUES(#{no}, #{postNo}, #{fileName})
 	</insert>
-	
-	<!-- attachBridge 생성을 위한 pk 가져오기 -->
-	<select id="selectPk" parameterType="Long"  resultType="Long">
-		SELECT no FROM attachment
-	</select>
 	
 	<!-- 첨부 파일 DB에서 첨부 파일들 불러와서 리스트로 전달하기 
 		attachBridge로 불러오지 않으려나? 일단 만들자-->

@@ -4,12 +4,18 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import himedia.myportal.repositories.dao.AttachDao;
+import himedia.myportal.repositories.vo.AttachVo;
 
 @Service
 public class FileUploadService {
 	private static String SAVE_PATH = "c:\\uploads";
+	@Autowired
+	private AttachDao attachDao;
 	
 	// 멀티파트 파일을 실제 파일로 저장하는 메서드
 	public String store(MultipartFile multipartFile) {
@@ -25,9 +31,31 @@ public class FileUploadService {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
-
+		
 		return saveFileName;
 	}
+	
+	// Attachment 저장을 위해서 만든 오버라이드 함수
+	public String store(Long postNo, MultipartFile multipartFile) {
+		// 파일 명 확인
+		String originalFilename = multipartFile.getOriginalFilename();
+		// 확장자 분리
+		String extName = originalFilename.substring(originalFilename.lastIndexOf("."));
+		String saveFileName = getSaveFilename(extName);
+		
+		System.out.println("New Filename : " + saveFileName);
+		try {
+			writeFile(multipartFile, getSaveFilename(".jpg"));
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+		
+		AttachVo attachVo = new AttachVo(postNo, saveFileName);
+		attachDao.insertAttach(attachVo);
+		
+		return saveFileName;
+	}
+	
 	
 	// 멀티파트 파일을 전달 받아서 실제 저장소에 저장하는 유틸리티 함수
 	private void writeFile(MultipartFile multipartFile, String saveFileName) throws IOException {

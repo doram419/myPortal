@@ -43,9 +43,7 @@ public class BoardDaoImpl implements BoardDao{
 
 	@Override
 	public BoardVo getContent(Long no) {
-		logger.debug("게시물 no : " + no);
 		BoardVo boardVo = sqlSession.selectOne("board.getContent", no);
-		logger.debug("게시물 vo : " + boardVo);
 		return boardVo;
 	}
 
@@ -78,8 +76,5 @@ public class BoardDaoImpl implements BoardDao{
 			e.printStackTrace();
 			throw new BoardDaoException("게시물 삭제 중 예외 발생!!");
 		}
-
-		
-
 	}
 }

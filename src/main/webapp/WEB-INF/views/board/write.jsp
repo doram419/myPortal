@@ -15,7 +15,8 @@
 	
 	<div id="container">
 		<div id="content">
-			<form method="post" action="<c:url value="/board/write"/>">
+			<form method="post" action="<c:url value="/board/write"/>"
+				enctype="multipart/form-data">
 			<table border="1" width="640">
 				<tr>
 					<td><h3>게시판</h3></td>
@@ -38,6 +39,10 @@
 						<a href="<c:url value="/board/"/>">취소</a>
 						<input type="submit" value="등록">
 					</td>	
+				</tr>
+				<tr>
+					<td>파일첨부</td>
+					<td> <input type="file" name="file"/> </td>
 				</tr>
 			</table>
 			</form>
